@@ -1,0 +1,29 @@
+<!-- public/logo/full-logo.svg -->
+<svg width="220" height="220" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#1F3552" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    
+    <!-- Stem -->
+    <path d="M110 180C110 140 115 110 120 80" />
+
+    <!-- Leaves -->
+    <path d="M120 130C140 120 145 105 142 92C130 96 120 108 120 130Z" fill="#1F3552" fill-opacity="0.08"/>
+    <path d="M108 110C92 100 88 86 92 74C105 80 112 92 108 110Z" fill="#1F3552" fill-opacity="0.08"/>
+
+    <!-- Flower -->
+    <g transform="translate(118 52)">
+      <path d="M0 18C0 5 8 0 14 0C20 0 28 5 28 18" fill="#E7C4BE"/>
+      <path d="M14 0V30" />
+      <path d="M0 18C8 12 20 12 28 18" />
+    </g>
+
+    <!-- Buds -->
+    <ellipse cx="150" cy="95" rx="5" ry="8" fill="#E7C4BE"/>
+    <ellipse cx="92" cy="145" rx="4" ry="6" fill="#E7C4BE"/>
+
+    <!-- Decorative waves -->
+    <path d="M20 90C45 70 70 70 95 90" stroke="#D8C9C2"/>
+    <path d="M10 105C40 85 75 85 110 105" stroke="#D8C9C2"/>
+    <path d="M25 120C55 100 85 100 120 120" stroke="#D8C9C2"/>
+
+  </g>
+</svg>

@@ -1,0 +1,16 @@
+<!-- public/logo/favicon.svg -->
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#1F3552" stroke-width="2" stroke-linecap="round">
+
+    <path d="M30 52C30 38 33 26 36 16" />
+
+    <g transform="translate(34 6)">
+      <path d="M0 8C0 2 4 0 7 0C10 0 14 2 14 8" fill="#E7C4BE"/>
+      <path d="M7 0V14" />
+    </g>
+
+    <path d="M2 30C12 22 22 22 32 30" stroke="#D8C9C2"/>
+    <path d="M0 38C14 28 28 28 40 38" stroke="#D8C9C2"/>
+
+  </g>
+</svg>

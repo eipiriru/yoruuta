@@ -1,0 +1,20 @@
+<!-- public/logo/icon.svg -->
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#1F3552" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+
+    <path d="M60 98C60 72 63 52 68 32" />
+
+    <path d="M68 60C82 54 86 45 84 36C75 39 68 47 68 60Z"
+      fill="#1F3552" fill-opacity="0.08"/>
+
+    <g transform="translate(64 10)">
+      <path d="M0 12C0 3 5 0 10 0C15 0 20 3 20 12" fill="#E7C4BE"/>
+      <path d="M10 0V22" />
+      <path d="M0 12C5 8 15 8 20 12" />
+    </g>
+
+    <path d="M8 56C24 44 40 44 56 56" stroke="#D8C9C2"/>
+    <path d="M0 66C20 52 42 52 66 66" stroke="#D8C9C2"/>
+
+  </g>
+</svg>

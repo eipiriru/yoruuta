@@ -1,0 +1,10 @@
+<!-- public/patterns/wave.svg -->
+<svg width="500" height="180" viewBox="0 0 500 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#D8C9C2" stroke-width="2" stroke-linecap="round">
+
+    <path d="M0 40C60 0 120 0 180 40C240 80 300 80 360 40C420 0 480 0 500 20"/>
+    <path d="M0 80C60 40 120 40 180 80C240 120 300 120 360 80C420 40 480 40 500 60"/>
+    <path d="M0 120C60 80 120 80 180 120C240 160 300 160 360 120C420 80 480 80 500 100"/>
+
+  </g>
+</svg>
