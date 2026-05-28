@@ -17,7 +17,7 @@ export default function FeatureSection() {
             >
               <div className="mb-6">
                 <Image
-                  src="/logo/icon.svg"
+                  src="/logo/icon.png"
                   alt="icon"
                   width={42}
                   height={42}

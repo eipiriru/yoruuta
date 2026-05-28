@@ -7,15 +7,15 @@ import SongList from '@/app/admin/components/ui/songList';
 
 export default function SongsHome() {
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-black py-8">
+    <div className="py-8">
       <div className="container mx-auto px-4">
         <div className="mb-6 flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-zinc-900 dark:text-white">
+            <h1 className="text-3xl font-bold">
               Songs
             </h1>
 
-            <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+            <p className="mt-1 text-sm text-slate-500">
               Manage your songs collection
             </p>
           </div>

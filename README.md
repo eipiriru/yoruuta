@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://placehold.co/600x400/1F3552/FFF?text=Yoruuta" alt="Yoruuta" width="120" />
+  <img src="https://yoruuta.vercel.app/assets/plan/yoruuta.png" alt="Yoruuta" width="120" />
   
   # Yoruuta
   

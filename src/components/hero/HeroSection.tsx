@@ -1,6 +1,9 @@
+'use client';
+
 // components/hero/HeroSection.tsx
 import Image from "next/image"
 import Button2 from "../ui/button2"
+import Link from 'next/link'; 
 
 export default function HeroSection() {
   return (
@@ -37,9 +40,9 @@ export default function HeroSection() {
                   <div className="w-full h-full rounded-full border-[40px] border-[#F3E5DF] border-r-transparent rotate-[-25deg]" />
                 </div>
 
-                <div className="absolute top-12 left-20">
+                <div className="absolute top-18 left-20">
                   <Image
-                    src="/logo/full-logo.svg"
+                    src="/logo/icon.png"
                     alt="flower"
                     width={180}
                     height={180}
@@ -49,32 +52,29 @@ export default function HeroSection() {
             </div>
 
             {/* Right */}
-            <div className="relative p-10 lg:p-16 text-[#F8F5F2]">
-              <p className="uppercase tracking-[0.3em] text-sm text-[#D6C2BC] mb-4">
+            <div className="relative p-10 lg:p-16">
+              {/* <p className="uppercase tracking-[0.3em] text-sm text-[#D6C2BC] mb-4">
                 Night Music Experience
-              </p>
+              </p> */}
 
               <h2 className="font-serif text-5xl lg:text-6xl leading-tight mb-6">
-                Menemukan
+                The Voice of
                 <br />
-                Suara di
-                <br />
-                Malam Hari
+                Silent Nights
               </h2>
 
-              <p className="text-[#D0D7E2] leading-relaxed max-w-lg mb-8">
-                Nikmati suasana musik malam dengan visual yang lembut,
-                tenang, dan penuh nuansa seperti langit malam.
+              <p className="leading-relaxed max-w-lg mb-8">
+                Like a wildflower swaying in the night breeze. <br/>
+                A quiet place to sing in solitude.
+              </p>
+              <p className="text-[12px] text-slate-400 leading-relaxed max-w-lg mb-8">
+                Seperti bunga liar yang berdesir dihembus angin malam. Sebuah tempat yang tenang untuk menyanyi dan memaknai lagu dalam kesendirian.
               </p>
 
-              <div className="flex flex-wrap gap-4">
-                <button className="px-8 py-4 rounded-xl bg-[#E6C1B8] text-[#1F3552] font-semibold hover:scale-[1.02] transition">
-                  Daftar Sekarang
-                </button>
-
-                <button className="px-8 py-4 rounded-xl border border-white/20 hover:bg-white/10 transition">
-                  Explore Music
-                </button>
+              <div className="flex flex-wrap gap-4 relative z-10">
+                <Link href="/music" className="px-8 py-4 rounded-xl border border-white/20 hover:bg-white/10 transition">
+                  Explore
+                </Link>
               </div>
             </div>
           </div>

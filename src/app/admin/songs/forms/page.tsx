@@ -78,7 +78,7 @@ export default function formSong() {
 
   return (
     <div className="container mx-auto py-8">
-      <div className="w-full bg-white dark:bg-gray-800 rounded shadow p-6">
+      <div className="w-full rounded shadow p-6">
         <h2 className="text-xl font-semibold mb-2">Upload New Song</h2>
         <p className="text-sm text-gray-500 mb-4">Fill in the details and upload the necessary files for a new song.</p>
         <form onSubmit={handleSubmit} className="space-y-6">

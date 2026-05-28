@@ -37,23 +37,38 @@ export default function KaraokePlayer({ audioUrl, lyrics }: Props) {
   }, [currentIndex])
 
   return (
-    <div>
-      <audio ref={audioRef} controls src={audioUrl} className="w-full rounded-md" />
-      <div className="mt-4 max-h-100 overflow-auto space-y-1 bg-muted-foreground">
+    <div className="flex flex-col gap-4">
+      {/* Trik style={{ colorScheme: 'dark' }} akan mengubah audio player bawaan menjadi gelap */}
+      <audio 
+        ref={audioRef} 
+        controls 
+        src={audioUrl} 
+        className="w-full outline-none opacity-90 hover:opacity-100 transition-opacity"
+        style={{ colorScheme: 'dark' }} 
+      />
+
+      <div className="mt-2 max-h-125 overflow-y-auto space-y-2 bg-slate-900/50 p-4 rounded-xl border border-slate-800 scroll-smooth">
         {lyrics && lyrics.length > 0 ? (
           lyrics.map((line, i) => (
             <div
               key={i}
               id={`lyric-${i}`}
-              className={`px-3 py-1 transition-colors duration-150 ${i === currentIndex ? 'bg-yellow-300 text-black font-semibold' : 'text-gray-600'}`}
+              className={`px-4 py-2 rounded-lg transition-all duration-300 ease-in-out ${
+                i === currentIndex 
+                  ? 'bg-slate-800 text-rose-400 font-medium scale-[1.02] shadow-sm border border-slate-700/50' 
+                  : 'text-slate-500 hover:text-slate-300 hover:bg-slate-800/30'
+              }`}
             >
               {line.text}
             </div>
           ))
         ) : (
-          <p className="text-sm text-gray-500">No lyrics available</p>
+          <div className="h-full flex items-center justify-center py-10">
+            <p className="text-sm text-slate-500 italic">There are no lyrics available for this wind yet</p>
+          </div>
         )}
       </div>
+
     </div>
   )
 }

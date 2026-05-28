@@ -25,19 +25,19 @@ export default function SongListClient({ initialSongs }: { initialSongs: Song[] 
     <div>
       <div className="flex gap-2 mb-4">
         <input
-          className="flex-1 border rounded px-3 py-2 bg-white"
+          className="flex-1 rounded px-3 py-2 bg-slate-900 border border-slate-600 focus:outline-none focus:border-slate-500 focus:ring-1 focus:ring-slate-500 transition-colors"
           placeholder="Search by title or artist..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <button onClick={refresh} className="px-4 py-2 bg-gray-800 text-white rounded">Refresh</button>
+        <button onClick={refresh} className="px-4 py-2 bg-slate-900 cursor-pointer hover:bg-slate-500 text-slate-300 rounded border border-slate-600">Refresh</button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {filtered.map((s) => {
           const cover = s.cover_url ? supabase.storage.from('album-covers').getPublicUrl(s.cover_url).data.publicUrl : '/placeholder.png'
           return (
-            <Link key={s.id} href={`/music/${s.id}`} className="block p-4 border rounded hover:shadow bg-card">
+            <Link key={s.id} href={`/music/${s.id}`} className="block p-4 border border-slate-500 rounded hover:shadow-2xl hover:bg-slate-900 hover:-translate-y-1 transition-all duration-300">
               <img src={cover} alt={s.title} className="w-full h-40 object-cover rounded-md mb-2" />
               <h3 className="font-semibold">{s.title}</h3>
               <p className="text-sm text-gray-500">{s.artist}</p>

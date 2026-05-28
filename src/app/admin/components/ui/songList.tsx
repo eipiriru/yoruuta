@@ -50,14 +50,14 @@ export default function SongLists() {
       <input
         type="text"
         placeholder="Cari judul lagu atau musisi..."
-        className="w-full md:w-1/3 px-4 py-2 border rounded-lg bg-white dark:bg-zinc-900 text-black dark:text-white"
+        className="flex-1 rounded px-3 py-2 bg-slate-900 border border-slate-600 focus:outline-none focus:border-slate-500 focus:ring-1 focus:ring-slate-500 transition-colors w-full md:w-1/3"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
 
-      <div className="overflow-x-auto border rounded-lg">
+      <div className="overflow-x-auto border border-slate-500 rounded-lg">
         <table className="w-full text-left border-collapse text-sm">
-          <thead className="bg-zinc-100 dark:bg-zinc-900 uppercase text-xs font-semibold">
+          <thead className="bg-slate-900 uppercase text-xs font-semibold">
             <tr>
               <th className="p-4">Judul</th>
               <th className="p-4">Musisi</th>
@@ -77,7 +77,7 @@ export default function SongLists() {
                 (filteredSongs.length > 0 ? 
                   (
                     filteredSongs.map((s) => (
-                      <tr key={s.id} className="hover:bg-zinc-50 dark:hover:bg-zinc-900/50">
+                      <tr key={s.id} className="hover:bg-slate-400">
                         <td className="p-4 font-medium">{s.title}</td>
                         <td className="p-4 text-zinc-600 dark:text-zinc-400">{s.artist}</td>
                         <td className="p-4 text-zinc-500">{s.description}</td>

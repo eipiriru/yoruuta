@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, JetBrains_Mono, Inter, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { Analytics } from '@vercel/analytics/next';
 
 const jetbrainsMono = JetBrains_Mono({subsets:['latin'],variable:'--font-mono'});
 
@@ -37,9 +36,8 @@ export default function RootLayout({
       lang="en"
       className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-mono", jetbrainsMono.variable)}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="bg-background text-foreground">
         {children}
-        <Analytics />
       </body>
     </html>
   );

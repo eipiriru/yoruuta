@@ -32,18 +32,27 @@ export default async function SongPage({ params }: { params: { id: string } | Pr
   const audioPublic = song.audio_url ? supabase.storage.from('audio-files').getPublicUrl(song.audio_url).data.publicUrl : null
 
   return (
-    <main className="min-h-screen bg-background overflow-hidden">
-      <section className="relative z-10">
-        <div className="max-w-7xl mx-auto px-6 py-12 text-center">
+    <main className="overflow-y-hidden">
+      <section className="relative z-10 mx-auto px-10 py-8 flex flex-col lg:flex-row gap-8 items-start">
+        <div className="w-full lg:w-1/4 p-6 text-center rounded-2xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
           <h1 className="text-3xl font-bold">{song.title}</h1>
-          <p className="text-lg text-gray-600">{song.artist}</p>
-          <div className="mt-4 justify-items-center">
-            {coverPublic && <img src={coverPublic} alt="cover" className="w-64 h-64 object-cover rounded-md" />}
+          <p className="text-lg text-slate-400 mt-1">{song.artist}</p>
+          <div className="mt-6 flex justify-center">
+            {coverPublic && (
+              <img 
+                src={coverPublic} 
+                alt="cover" 
+                className="w-64 h-64 object-cover rounded-xl shadow-lg" 
+              />
+            )}
           </div>
-          <div className="mt-6">
+          
+          <div className="mt-6 text-slate-300 text-sm leading-relaxed">
             <p>{song.description}</p>
           </div>
-          <div className="mt-6">
+        </div>
+        <div className="w-full lg:w-3/4 flex flex-col justify-center">
+          <div className="w-full bg-slate-900/50 rounded-2xl p-4 lg:p-8">
             {audioPublic && (
               <KaraokePlayer audioUrl={audioPublic} lyrics={lyrics} />
             )}
