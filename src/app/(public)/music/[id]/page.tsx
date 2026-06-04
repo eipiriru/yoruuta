@@ -1,9 +1,10 @@
-import { supabase } from '@/lib/supabase'
+import { createClient } from '@/lib/supabase'
 import { parseLRC, parseASS, LyricLine } from '@/lib/lyricsParser'
 import KaraokePlayer from '@/components/KaraokePlayer'
 
 export default async function SongPage({ params }: { params: { id: string } | Promise<{ id: string }> }) {
   const { id } = await params as { id: string }
+  const supabase = createClient();
   const { data } = await supabase.from('songs').select('*').eq('id', id).single()
   const song = data
   if (!song) return <div>Song not found</div>

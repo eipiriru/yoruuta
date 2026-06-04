@@ -2,7 +2,14 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { supabase } from "@/lib/supabase"
+import { createClient } from "@/lib/supabase"
+import PageBreadcrumb from "@/components/common/PageBreadCrumb";
+import ComponentCard from '@/components/common/ComponentCard';
+import Label from "@/components/form/Label";
+import Input from "@/components/form/input/InputField";
+import TextArea from "@/components/form/input/TextArea";
+import FileInput from "@/components/form/input/FileInput";
+
 // Using plain HTML controls instead of shadcn UI components for now
 
 export default function formSong() {
@@ -15,6 +22,7 @@ export default function formSong() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState<string | null>(null)
+  const supabase = createClient();
 
   const router = useRouter()
 
@@ -78,53 +86,58 @@ export default function formSong() {
 
   return (
     <div className="container mx-auto py-8">
-      <div className="w-full rounded shadow p-6">
-        <h2 className="text-xl font-semibold mb-2">Upload New Song</h2>
-        <p className="text-sm text-gray-500 mb-4">Fill in the details and upload the necessary files for a new song.</p>
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label htmlFor="title" className="block text-sm font-medium">Title</label>
-            <input id="title" value={title} onChange={(e) => setTitle(e.target.value)} required className="mt-1 block w-full border rounded px-3 py-2" />
-          </div>
-          <div>
-            <label htmlFor="artist" className="block text-sm font-medium">Artist</label>
-            <input id="artist" value={artist} onChange={(e) => setArtist(e.target.value)} required className="mt-1 block w-full border rounded px-3 py-2" />
-          </div>
-          <div>
-            <label htmlFor="description" className="block text-sm font-medium">Description/Trivia</label>
-            <textarea id="description" value={description} onChange={(e) => setDescription(e.target.value)} rows={5} className="mt-1 block w-full border rounded px-3 py-2" />
-          </div>
-          <div>
-            <label htmlFor="cover" className="block text-sm font-medium">Album Cover (Image)</label>
-            <input id="cover" type="file" accept="image/*" onChange={(e) => setCoverFile(e.target.files ? e.target.files[0] : null)} className="mt-1" />
-          </div>
-          <div>
-            <label htmlFor="audio" className="block text-sm font-medium">Audio File (.mp3)</label>
-            <input id="audio" type="file" accept="audio/mp3" onChange={(e) => setAudioFile(e.target.files ? e.target.files[0] : null)} required className="mt-1" />
-          </div>
-          <div>
-            <label htmlFor="lyrics" className="block text-sm font-medium">Lyrics File (.ass or .lrc)</label>
-            <input id="lyrics" type="file" accept=".ass,.lrc" onChange={(e) => setLyricsFile(e.target.files ? e.target.files[0] : null)} className="mt-1" />
-          </div>
-          {error && <p className="text-red-500 text-sm">{error}</p>}
-          {success && <p className="text-green-500 text-sm">{success}</p>}
-          <button type="submit" disabled={loading} className={`w-full text-white px-4 py-2 rounded 
-            ${
-              loading
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-green-600 hover:bg-green-700 cursor-pointer"
-            }`}
-          >{loading ? 'Uploading...' : 'Upload Song'}</button>
-        </form>
-      </div>
-      {loading && (
-        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[100]">
-          <div className="bg-white dark:bg-zinc-900 px-6 py-4 rounded-lg shadow-xl flex items-center gap-3 text-black dark:text-white">
-            <div className="w-5 h-5 border-2 border-zinc-300 border-t-blue-500 rounded-full animate-spin"></div>
-            <span className="font-medium">Menyimpan lagu...</span>
-          </div>
+      <PageBreadcrumb pageTitle="Add Song" />
+      <div className="gap-6 xl:grid-cols-2">
+        <div className="space-y-6">
+          <ComponentCard title="Upload New Song">
+            <>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <Label>Title</Label>
+                  <Input type="text" placeholder="ex. Thats why I gave up on music" id="title" defaultValue={title} onChange={(e) => setTitle(e.target.value)} required className="placeholder:italic"/>
+                </div>
+                <div>
+                  <Label>Artist</Label>
+                  <Input type="text" placeholder="ex. Yorushika" id="artist" defaultValue={artist} onChange={(e) => setArtist(e.target.value)} required className="placeholder:italic"/>
+                </div>
+                <div>
+                  <Label>Description/Trivia</Label>
+                  <TextArea placeholder="ex. because of you Elma" id="description" value={description} onChange={(value) => setDescription(value)} required className="placeholder:italic"/>
+                </div>
+                <div>
+                  <Label>Album Cover (Image)</Label>
+                  <FileInput id="cover" accept="image/*" onChange={(e) => setCoverFile(e.target.files ? e.target.files[0] : null)} required className="custom-class" />
+                </div>
+                <div>
+                  <Label>Audio File (.mp3)</Label>
+                  <FileInput id="audio" accept="audio/mp3" onChange={(e) => setAudioFile(e.target.files ? e.target.files[0] : null)} required className="custom-class" />
+                </div>
+                <div>
+                  <Label>Lyrics File (.ass or .lrc)</Label>
+                  <FileInput id="lyrics"accept=".ass,.lrc" onChange={(e) => setLyricsFile(e.target.files ? e.target.files[0] : null)} className="custom-class" />
+                </div>
+                {error && <p className="text-red-500 text-sm">{error}</p>}
+                {success && <p className="text-green-500 text-sm">{success}</p>}
+                <button type="submit" disabled={loading} className={`w-full text-white px-4 py-2 rounded 
+                  ${
+                    loading
+                      ? "bg-gray-400 cursor-not-allowed"
+                      : "bg-green-900 hover:bg-green-700 cursor-pointer"
+                  }`}
+                >{loading ? 'Uploading...' : 'Upload Song'}</button>
+              </form>
+              {loading && (
+                <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[100]">
+                  <div className="bg-white dark:bg-zinc-900 px-6 py-4 rounded-lg shadow-xl flex items-center gap-3 text-black dark:text-white">
+                    <div className="w-5 h-5 border-2 border-zinc-300 border-t-blue-500 rounded-full animate-spin"></div>
+                    <span className="font-medium">Menyimpan lagu...</span>
+                  </div>
+                </div>
+              )}
+            </>
+          </ComponentCard>
         </div>
-      )}
+      </div>
     </div>
   )
 }

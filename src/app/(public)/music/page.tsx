@@ -1,7 +1,8 @@
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@/lib/supabase';
 import SongListClient from '@/components/SongListClient';
 
 export default async function Home() {
+  const supabase = createClient();
   const { data: songs } = await supabase.from('songs').select('id,title,artist,cover_url,description').order('created_at', { ascending: false })
 
   return (

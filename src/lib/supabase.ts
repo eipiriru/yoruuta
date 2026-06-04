@@ -1,15 +1,29 @@
+import { createBrowserClient } from '@supabase/ssr'
 
-import { createClient } from '@supabase/supabase-js'
+export function createClient() {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  if (!supabaseUrl || !supabaseAnonKey) {
+    throw new Error('Missing Supabase URL or anonymous key environment variables.')
+  }
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Missing Supabase URL or anonymous key environment variables.')
+  // Mengembalikan instance baru (atau yang sudah ada jika di browser)
+  return createBrowserClient(supabaseUrl, supabaseAnonKey)
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+// import { createBrowserClient } from '@supabase/ssr'
 
-if (typeof window !== 'undefined') {
-  ;(window as any).supabase = supabase
-}
+// const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+// const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+// if (!supabaseUrl || !supabaseAnonKey) {
+//   throw new Error('Missing Supabase URL or anonymous key environment variables.')
+// }
+
+// export const supabase = createBrowserClient(supabaseUrl, supabaseAnonKey)
+
+// // (Opsional) Memasukkan ke window agar bisa diakses dari console browser
+// if (typeof window !== 'undefined') {
+//   ;(window as any).supabase = supabase
+// }

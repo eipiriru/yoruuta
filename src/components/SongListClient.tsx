@@ -2,13 +2,14 @@
 
 import React, { useMemo, useState } from 'react'
 import Link from 'next/link'
-import { supabase } from '@/lib/supabase'
+import { createClient } from '@/lib/supabase'
 
 type Song = { id: string; title: string; artist: string; cover_url?: string | null; description?: string | null }
 
 export default function SongListClient({ initialSongs }: { initialSongs: Song[] }) {
   const [query, setQuery] = useState('')
   const [songs, setSongs] = useState<Song[]>(initialSongs)
+  const supabase = createClient();
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase()

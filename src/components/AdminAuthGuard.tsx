@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation' // Impor usePathname
-import { supabase } from '@/lib/supabase'
+import { createClient } from "@/lib/supabase"
 
 export default function AdminAuthGuard({ children }: { children: React.ReactNode }) {
   const router = useRouter()
@@ -12,13 +12,14 @@ export default function AdminAuthGuard({ children }: { children: React.ReactNode
   useEffect(() => {
     let mounted = true
     const check = async () => {
+      const supabase = createClient();
       const { data: { session } } = await supabase.auth.getSession()
 
       // const currentPath = router.pathname // Baris ini yang menyebabkan error, sekarang kita pakai `pathname`
 
       if (session) {
         if (pathname === '/admin/login') {
-          router.push('/admin/songs')
+          router.push('/admin')
           // Jangan set checking ke false karena akan ada redirect
         } else {
           if (mounted) setChecking(false)
