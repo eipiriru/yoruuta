@@ -1,16 +1,21 @@
 "use client"
 
-import React, { useMemo, useState } from 'react'
+import React, { useMemo, useState, useEffect } from 'react'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
 
 type Song = { id: string; title: string; artist: string; cover_url?: string | null; description?: string | null }
+const supabase = createClient();
 
 export default function SongListClient({ initialSongs }: { initialSongs: Song[] }) {
   const [query, setQuery] = useState('')
   const [songs, setSongs] = useState<Song[]>(initialSongs)
-  const supabase = createClient();
+  const [isRefreshing, setIsRefreshing] = useState(false)
 
+  useEffect(() => {
+    refresh()
+  }, [])
+  
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase()
     if (!q) return songs
@@ -18,8 +23,14 @@ export default function SongListClient({ initialSongs }: { initialSongs: Song[] 
   }, [query, songs])
 
   const refresh = async () => {
-    const { data } = await supabase.from('songs').select('id,title,artist,cover_url,description').order('created_at', { ascending: false })
+    setIsRefreshing(true)
+    const { data } = await supabase
+      .from('songs')
+      .select('id,title,artist,cover_url,description')
+      .order('created_at', { ascending: false })
+    
     setSongs(data ?? [])
+    setIsRefreshing(false)
   }
 
   return (
@@ -31,12 +42,21 @@ export default function SongListClient({ initialSongs }: { initialSongs: Song[] 
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <button onClick={refresh} className="px-4 py-2 bg-slate-900 cursor-pointer hover:bg-slate-500 text-slate-300 rounded border border-slate-600">Refresh</button>
+        <button 
+          onClick={refresh} 
+          disabled={isRefreshing}
+          className="px-4 py-2 bg-slate-900 cursor-pointer hover:bg-slate-500 text-slate-300 rounded border border-slate-600 disabled:opacity-50"
+        >
+          {isRefreshing ? 'Loading...' : 'Refresh'}
+        </button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {filtered.map((s) => {
-          const cover = s.cover_url ? supabase.storage.from('album-covers').getPublicUrl(s.cover_url).data.publicUrl : '/placeholder.png'
+          const cover = s.cover_url 
+            ? supabase.storage.from('album-covers').getPublicUrl(s.cover_url).data.publicUrl 
+            : '/placeholder.png'
+            
           return (
             <Link key={s.id} href={`/music/${s.id}`} className="block p-4 border border-slate-500 rounded hover:shadow-2xl hover:bg-slate-900 hover:-translate-y-1 transition-all duration-300">
               <img src={cover} alt={s.title} className="w-full h-40 object-cover rounded-md mb-2" />
@@ -47,7 +67,7 @@ export default function SongListClient({ initialSongs }: { initialSongs: Song[] 
         })}
 
         {filtered.length === 0 && (
-          <p className="text-sm text-gray-500">No songs found. Try a different search.</p>
+          <p className="text-sm text-gray-500 col-span-full">No songs found. Try a different search.</p>
         )}
       </div>
     </div>

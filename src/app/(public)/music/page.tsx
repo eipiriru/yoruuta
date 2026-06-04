@@ -1,9 +1,6 @@
-import { createClient } from '@/lib/supabase';
 import SongListClient from '@/components/SongListClient';
 
 export default async function Home() {
-  const supabase = createClient();
-  const { data: songs } = await supabase.from('songs').select('id,title,artist,cover_url,description').order('created_at', { ascending: false })
 
   return (
     <main className="overflow-hidden">
@@ -11,7 +8,7 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto px-6 py-12">
           <h1 className="text-3xl font-bold mb-4">Music</h1>
           {/* Server passes initial songs to client component for search and interactivity */}
-          <SongListClient initialSongs={songs ?? []} />
+          <SongListClient initialSongs={[]} />
         </div>
       </section>
     </main>
