@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { type Song, getAllSongs, deleteSongs } from "../services/songServices";
+import { useRouter, usePathname } from 'next/navigation';
 import Input from '../form/input/InputField';
 import {
   Table,
@@ -12,9 +13,11 @@ import {
 } from "../ui/table";
 import Image from "next/image";
 import Badge from "../ui/badge/Badge";
+import { TrashBinIcon, PencilIcon } from '@/icons';
 
 
 export default function SongLists() {
+  const router = useRouter();
   const [songs, setSongs] = useState<Song[]>([]); 
   const [searchTerm, setSearchTerm] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -54,6 +57,10 @@ export default function SongLists() {
     } finally {
       setDeletingId(null); 
     }
+  }
+
+  const handleEdit = async (s: Song) => {
+    router.push(`/admin/songs/forms/${s.id}`);
   }
 
   return (
@@ -111,16 +118,27 @@ export default function SongLists() {
                           <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
                             {s.description}
                           </TableCell>
-                          <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
-                            <button 
-                              className={`
-                                ${
-                                  deletingId === s.id
-                                    ? "bg-gray-400 cursor-not-allowed"
-                                    : "bg-red-500 hover:bg-red-700 cursor-pointer"
-                                }
-                              text-white font-bold py-2 px-4 rounded-full transition-colors`
-                                } disabled={deletingId === s.id} onClick={() => handleDelete(s)}>Delete</button>
+                          <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400 w-40">
+                            <div className="grid grid-cols-2 gap-2 h-10.5">
+                              <button 
+                                className={`
+                                  ${
+                                    deletingId === s.id
+                                      ? "bg-gray-400 cursor-not-allowed"
+                                      : "bg-red-500 hover:bg-red-700 cursor-pointer"
+                                  }
+                                  active:border-b-0
+                                  active:border-r-0  
+                                  text-white flex justify-center items-center font-bold border-b-4 border-r-3 border-red-900 rounded-md transition-colors`
+                                  } disabled={deletingId === s.id} onClick={() => handleDelete(s)} ><TrashBinIcon/></button>
+                              <button 
+                                className={`
+                                  bg-yellow-500 hover:bg-yellow-700 cursor-pointer
+                                  active:border-b-0
+                                  active:border-r-0  
+                                  text-white font-bold py-2 px-4 border-b-4 border-r-3 border-yellow-900 rounded-md transition-colors`
+                                  } disabled={deletingId === s.id} onClick={() => handleEdit(s)}><PencilIcon/></button>
+                            </div>
                           </TableCell>
                         </TableRow>
                         )

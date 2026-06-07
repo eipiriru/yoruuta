@@ -23,22 +23,28 @@ export async function deleteSongs(id: string) {
         // Delete cover
         if (song.cover_url) {
             const coverPath = song.cover_url.split("/").pop();
-            console.log(coverPath);
-            await supabase.storage.from("album-covers").remove([coverPath]);
+            if(!deleteStorage("album-covers", coverPath)){
+                var err = ("Gagl hapus album");
+                throw err;
+            }
         }
     
         // Delete audio
         if (song.audio_url) {
             const audioPath = song.audio_url.split("/").pop();
-            console.log(audioPath);
-            await supabase.storage.from("audio-files").remove([audioPath]);
+            if(!deleteStorage("audio-files", audioPath)){
+                var err = ("Gagl hapus audio");
+                throw err;
+            }
         }
     
         // Delete lyrics
         if (song.lyrics_file_url) {
             const lyricsPath = song.lyrics_file_url.split("/").pop();
-            console.log(lyricsPath);
-            await supabase.storage.from("lyrics-files").remove([lyricsPath]);
+            if(!deleteStorage("lyrics-files", lyricsPath)){
+                var err = ("Gagl hapus lyric");
+                throw err;
+            }
         }
     
         // Delete database row
@@ -50,5 +56,15 @@ export async function deleteSongs(id: string) {
     } catch (err) {
         console.error(err)
         alert("Failed to delete")
+    }
+}
+
+export async function deleteStorage(bucket : string, path: string) {
+    try {
+        const { error } = await supabase.storage.from(bucket).remove([path]);
+        if (error) throw error;
+        return true;
+    } catch (err) {
+        return false;
     }
 }
