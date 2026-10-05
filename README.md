@@ -67,6 +67,7 @@ Make sure you have Node.js installed on your machine.
   ```sh
   NEXT_PUBLIC_SUPABASE_URL=YOUR_SUPABASE_PROJECT_URL
   NEXT_PUBLIC_SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_KEY
+  CRON_SECRET=--opsional
 - npm run dev
 - Open http://localhost:3000 in your browser to see the app.
 
