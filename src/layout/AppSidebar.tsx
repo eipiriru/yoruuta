@@ -33,7 +33,16 @@ const navItems: NavItem[] = [
       { name: "Song List", path: "/admin/songs", pro: false },
       { name: "Add Song", path: "/admin/songs/forms", pro: false },
     ],
-  }
+  },
+  {
+    icon: <BoxCubeIcon />,
+    name: "Manage Streams",
+    subItems: [
+      { name: "Stream List", path: "/admin/streams", pro: false },
+      { name: "Add Stream", path: "/admin/streams/forms", pro: false },
+      { name: "AI Settings", path: "/admin/ai-settings", pro: false },
+    ],
+  },
 ];
 
 const othersItems: NavItem[] = [

@@ -44,6 +44,9 @@ export default function Navbar() {
           <Link href="/music" className="hover:text-slate-300 transition-colors">
             Music
           </Link>
+          <Link href="/stream" className="hover:text-slate-300 transition-colors">
+            Stream
+          </Link>
           <Link href="#" className="hover:text-slate-300 transition-colors">
             About
           </Link>
@@ -76,6 +79,13 @@ export default function Navbar() {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Music
+            </Link>
+            <Link
+              href="/stream"
+              className="py-2 hover:text-slate-300 transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Stream
             </Link>
             <Link 
               href="#" 
