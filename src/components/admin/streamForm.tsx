@@ -115,7 +115,7 @@ export default function StreamForm({ id }: { id?: string }) {
           </div>
           {!id && <div className="space-y-2">
             <Label>Offset lirik (detik)</Label>
-            <Input type="number" step="0.1" value={offset} onChange={(event) => setOffset(Number(event.target.value))} />
+            <Input type="number" step={0.1} value={offset} onChange={(event) => setOffset(Number(event.target.value))} />
           </div>}
           {!id && lyricsData && (
             <p className={`rounded p-3 text-sm ${processingStatus === 'partial' ? 'bg-amber-50 text-amber-900 dark:bg-amber-950 dark:text-amber-200' : 'bg-green-50 text-green-800 dark:bg-green-950 dark:text-green-200'}`}>
