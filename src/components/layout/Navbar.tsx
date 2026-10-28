@@ -47,6 +47,14 @@ export default function Navbar() {
           <Link href="/stream" className="hover:text-slate-300 transition-colors">
             Stream
           </Link>
+          <a
+            href="https://chromewebstore.google.com/detail/ednmohnomlpjchgmmkajfliijamipnlg"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-slate-300 transition-colors"
+          >
+            Ekstensi Chrome
+          </a>
           <Link href="#" className="hover:text-slate-300 transition-colors">
             About
           </Link>
@@ -87,6 +95,15 @@ export default function Navbar() {
             >
               Stream
             </Link>
+            <a
+              href="https://chromewebstore.google.com/detail/ednmohnomlpjchgmmkajfliijamipnlg"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="py-2 hover:text-slate-300 transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Ekstensi Chrome
+            </a>
             <Link 
               href="#" 
               className="py-2 hover:text-slate-300 transition-colors"
