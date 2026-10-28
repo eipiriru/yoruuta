@@ -30,11 +30,26 @@ export default function Footer() {
           </div>
           <div className="flex flex-col gap-4">
             <h3 className="text-sm font-semibold text-slate-100 tracking-wider">
-              Find us
+              Find and support us
             </h3>
             <div className="flex items-center gap-4 text-slate-400">
-              <a href="https://github.com/eipiriru" className="hover:text-slate-200 transition-colors" aria-label="Github">
-                <i className="codicon codicon-github"/>
+              <a href="https://github.com/eipiriru/yoruuta" target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-80" aria-label="Yoruuta di GitHub">
+                <img
+                  src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+                  width="40"
+                  height="40"
+                  alt="GitHub"
+                  className="h-10 w-10"
+                />
+                
+              </a>
+              <a href="https://trakteer.id/ainurkz" target="_blank" rel="noopener noreferrer" aria-label="Traktir tahu bakso melalui Trakteer" className="">
+                <img
+                  src="https://cdn.trakteer.id/images/embed/trbtn-red-1.png?date=18-11-2023"
+                  height="10"
+                  alt="Traktir tahu bakso"
+                  className="h-10 w-auto"
+                />
               </a>
             </div>
           </div>

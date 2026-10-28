@@ -133,7 +133,7 @@ export default function HeroSection() {
               </p>
 
               <div className="flex flex-wrap gap-4 relative z-10">
-                <Link href="/music" className="px-8 py-4 rounded-xl border border-white/20 text-white hover:bg-white/10 transition">
+                <Link href="/stream" className="px-8 py-4 rounded-xl border border-white/20 text-white hover:bg-white/10 transition">
                   Explore
                 </Link>
               </div>

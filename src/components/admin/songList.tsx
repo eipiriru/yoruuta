@@ -13,7 +13,6 @@ import {
 } from "../ui/table";
 import Image from "next/image";
 import Badge from "../ui/badge/Badge";
-import { TrashBinIcon, PencilIcon } from '@/icons';
 
 
 export default function SongLists() {
@@ -119,25 +118,21 @@ export default function SongLists() {
                             {s.description}
                           </TableCell>
                           <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400 w-40">
-                            <div className="grid grid-cols-2 gap-2 h-10.5">
-                              <button 
-                                className={`
-                                  ${
-                                    deletingId === s.id
-                                      ? "bg-gray-400 cursor-not-allowed"
-                                      : "bg-red-500 hover:bg-red-700 cursor-pointer"
-                                  }
-                                  active:border-b-0
-                                  active:border-r-0  
-                                  text-white flex justify-center items-center font-bold border-b-4 border-r-3 border-red-900 rounded-md transition-colors`
-                                  } disabled={deletingId === s.id} onClick={() => handleDelete(s)} ><TrashBinIcon/></button>
-                              <button 
-                                className={`
-                                  bg-yellow-500 hover:bg-yellow-700 cursor-pointer
-                                  active:border-b-0
-                                  active:border-r-0  
-                                  text-white font-bold py-2 px-4 border-b-4 border-r-3 border-yellow-900 rounded-md transition-colors`
-                                  } disabled={deletingId === s.id} onClick={() => handleEdit(s)}><PencilIcon/></button>
+                            <div className="flex items-center gap-3">
+                              <button
+                                className="font-medium text-blue-600 transition-colors hover:text-blue-700 disabled:cursor-not-allowed disabled:opacity-50 dark:text-blue-400 dark:hover:text-blue-300"
+                                disabled={deletingId === s.id}
+                                onClick={() => handleEdit(s)}
+                              >
+                                Edit
+                              </button>
+                              <button
+                                className="font-medium text-red-600 transition-colors hover:text-red-700 disabled:cursor-not-allowed disabled:opacity-50 dark:text-red-400 dark:hover:text-red-300"
+                                disabled={deletingId === s.id}
+                                onClick={() => handleDelete(s)}
+                              >
+                                {deletingId === s.id ? "Menghapus..." : "Hapus"}
+                              </button>
                             </div>
                           </TableCell>
                         </TableRow>
